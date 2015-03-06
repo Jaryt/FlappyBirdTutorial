@@ -195,6 +195,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 			if (bird.y + yMotion >= HEIGHT - 120)
 			{
 				bird.y = HEIGHT - 120 - bird.height;
+				gameOver = true;
 			}
 		}
 
