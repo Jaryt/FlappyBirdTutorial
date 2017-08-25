@@ -17,7 +17,7 @@ import java.awt.image.ImageObserver;
 public class Bird extends GameObject {
 
     private ProxyImage proxyImage;
-    
+    private Tube[] tube;
     public Bird(int x, int y){
         super(x, y);
         if(proxyImage == null) {
@@ -28,7 +28,8 @@ public class Bird extends GameObject {
         this.height = image.getHeight(null);
         this.x -= width;
         this.y -= height;
-     
+        tube = new Tube[1];
+        tube[0] = new Tube(900, Window.HEIGHT - 60);
         this.dy = 4;
     }
     @Override
@@ -37,6 +38,7 @@ public class Bird extends GameObject {
             dy += 2;
         }
         this.y += dy;
+        tube[0].tick();
         checkWindowBorder();
     }
     public void jump() {
@@ -64,5 +66,6 @@ public class Bird extends GameObject {
     @Override
     public void render(Graphics2D g, ImageObserver obs) {
         g.drawImage(image, x, y, obs);
+        tube[0].render(g, obs);
     }
 }
