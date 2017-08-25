@@ -3,28 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.flappybird.model;
+package com.flappybird.model.proxy;
 
+import com.flappybird.model.proxy.RealImage;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author derickfelix
  */
-public class RealImage implements IImage {
+public class ProxyImage implements IImage {
 
     private final String src;
-    private ImageIcon imageIcon;
+    private RealImage realImage;
     
-    public RealImage(String src) {
+    public ProxyImage(String src) {
         this.src = src;
     }
     @Override
     public ImageIcon loadImage() {
-        if(imageIcon == null) {
-            this.imageIcon = new ImageIcon(getClass().getResource(src));
+        if(realImage == null) {
+            this.realImage = new RealImage(src);
         }
-        return imageIcon;
+        
+        return this.realImage.loadImage();
     }
     
 }

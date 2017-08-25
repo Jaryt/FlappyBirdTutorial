@@ -5,6 +5,7 @@
  */
 package com.flappybird.view;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
@@ -12,13 +13,17 @@ import javax.swing.JFrame;
  * @author derickfelix
  */
 public class Window {
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
     public Window(int width, int height, String title, Game game) {
         JFrame frame = new JFrame();
         
         frame.add(game);
         frame.setTitle(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(width, height);
+        frame.setMaximumSize(new Dimension(width, height));
+        frame.setPreferredSize(new Dimension(width, height));
+        frame.setMinimumSize(new Dimension(width, height));
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
@@ -40,7 +45,7 @@ public class Window {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             
-            Window window = new Window(800, 600, "Flappy Bird", game);
+            Window window = new Window(WIDTH, HEIGHT, "Flappy Bird", game);
             
         });
     }
