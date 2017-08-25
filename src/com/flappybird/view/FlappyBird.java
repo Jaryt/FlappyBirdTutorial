@@ -1,4 +1,4 @@
-package flappyBird;
+package com.flappybird.view;
 
 import java.awt.Color;
 import java.awt.Font;

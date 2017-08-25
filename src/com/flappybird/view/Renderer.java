@@ -1,4 +1,5 @@
-package flappyBird;
+package com.flappybird.view;
+
 
 import java.awt.Graphics;
 
