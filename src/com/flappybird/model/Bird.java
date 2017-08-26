@@ -8,6 +8,7 @@ package com.flappybird.model;
 import com.flappybird.model.proxy.ProxyImage;
 import com.flappybird.view.Window;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 
 /**
@@ -67,5 +68,10 @@ public class Bird extends GameObject {
     public void render(Graphics2D g, ImageObserver obs) {
         g.drawImage(image, x, y, obs);
         tube[0].render(g, obs);
+    }
+    
+    
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
 }

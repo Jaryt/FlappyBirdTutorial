@@ -23,6 +23,9 @@ public class TubeColumn {
 
     private List<Tube> tubes;
     private Random random;
+    private int points = 0;
+    private int speed = 5;
+    private int changeSpeed = speed;
 
     public TubeColumn() {
         tubes = new ArrayList<>();
@@ -34,13 +37,13 @@ public class TubeColumn {
 
         int last = base;
         int randWay = random.nextInt(10);
-        
+
         for (int i = 0; i < 20; i++) {
 
             Tube tempTube = new Tube(900, last);
-
+            tempTube.setDx(speed);
             last = tempTube.getY() - tempTube.getHeight();
-            if (i < randWay || i > randWay + 3) {
+            if (i < randWay || i > randWay + 4) {
                 tubes.add(tempTube);
             }
 
@@ -49,18 +52,25 @@ public class TubeColumn {
     }
 
     public void tick() {
-        
+
         for (int i = 0; i < tubes.size(); i++) {
             tubes.get(i).tick();
-            
-            if(tubes.get(i).getX() < 0) {
+
+            if (tubes.get(i).getX() < 0) {
                 tubes.remove(tubes.get(i));
             }
         }
-        if(tubes.isEmpty()) {
+        if (tubes.isEmpty()) {
+            this.points += 1;
+            if (changeSpeed == points) {
+                this.speed += 1;
+                changeSpeed += 5;
+                System.out.println(speed);
+                
+            }
             initTubes();
         }
-        
+
     }
 
     public void render(Graphics2D g, ImageObserver obs) {
@@ -68,6 +78,22 @@ public class TubeColumn {
             tubes.get(i).render(g, obs);
         }
 
+    }
+
+    public List<Tube> getTubes() {
+        return tubes;
+    }
+
+    public void setTubes(List<Tube> tubes) {
+        this.tubes = tubes;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
 }
